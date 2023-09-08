@@ -1,4 +1,12 @@
 " use strict";
+const input_search_desc = document.querySelector('.js_insearch_desc');
+const descrSearchText = input_search_desc.value;
+const input_search_race = document.querySelector('.js_search_race');
+const raceSearchText = input_search_race.value;
+let html = '';
+
+
+
 const jsList = document.querySelector(".js-list");
 
 /* tarjeta 1 */
@@ -20,7 +28,7 @@ const kittenImage3 = "https://dev.adalab.es/maine-coon-cat.webp";
 const kittenName3 = "Cielo";
 const kittenDesc3 =
  "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.";
-const kittenRace3 = "Sphynx";
+const kittenRace3 = "Maine coon";
 
 const kittenOne = `<li class="card">
           <article>
@@ -69,4 +77,24 @@ const kittenThree = `<li class="card">
           </article>
         </li>`;
 
-jsList.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+if( kittenDesc1.includes(descrSearchText) ) {
+  jsList.innerHTML+= kittenOne;
+  }
+  
+  if( kittenDesc2.includes(descrSearchText) ) {
+jsList.innerHtml+=kittenTwo;
+  }
+  
+  if( kittenDesc3.includes(descrSearchText) ) {
+    jsList.innerHTML+=kittenThree;
+  }
+
+  if (kittenRace1 === "" || kittenRace2 === "" || kittenRace3 === "" ) {
+    html = `Uy que despiste, no sabemos su raza`;
+    jsList.value=html;
+  } else {
+    html = raza;
+  }; 
+
+  console.log(html)
