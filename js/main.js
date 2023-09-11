@@ -3,8 +3,6 @@ const input_search_desc = document.querySelector('.js_insearch_desc');
 const descrSearchText = input_search_desc.value;
 const input_search_race = document.querySelector('.js_search_race');
 const raceSearchText = input_search_race.value;
-let html = '';
-
 
 
 const jsList = document.querySelector(".js-list");
@@ -30,6 +28,14 @@ const kittenDesc3 =
  "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.";
 const kittenRace3 = "Maine coon";
 
+let html = '';
+
+if (kittenRace1 === "" ) {
+  html = `Uy que despiste, no sabemos su raza`;
+} else {
+  html = kittenRace1;
+}; 
+
 const kittenOne = `<li class="card">
           <article>
             <img
@@ -38,7 +44,7 @@ const kittenOne = `<li class="card">
               alt="gatito"
             />
             <h3 class="card_title">${kittenName1.toUpperCase()}</h3>
-            <h4 class="card_race">${kittenRace1}</h4>
+            <h4 class="card_race">${html}</h4>
             <p class="card_description">
                 ${kittenDesc1}
             </p>
@@ -46,6 +52,12 @@ const kittenOne = `<li class="card">
         </li>`;
 
 /* console.log(kittenImage1 + kittenName1 + kittenRace1 + kittenDesc1);  */
+
+if (kittenRace2 === "" ) {
+  html = `Uy que despiste, no sabemos su raza`;
+} else {
+  html = kittenRace2;
+}; 
 
 const kittenTwo = `<li class="card">
          <article>
@@ -55,12 +67,18 @@ const kittenTwo = `<li class="card">
               alt="sphynx-cat"
             />
             <h3 class="card_title">${kittenName2.toUpperCase()}</h3>
-            <h4 class="card_race">${kittenRace2}</h4>
+            <h4 class="card_race">${html}</h4>
             <p class="card_description">
             ${kittenDesc2}
             </p>
             </article>
           </li>`;
+
+if (kittenRace3 === "" ) {
+  html = `Uy que despiste, no sabemos su raza`;
+} else {
+  html = kittenRace3;
+}; 
 
 const kittenThree = `<li class="card">
           <article>
@@ -70,31 +88,66 @@ const kittenThree = `<li class="card">
               alt="maine-coon-cat"
             />
             <h3 class="card_title">${kittenName3.toUpperCase()}</h3>
-            <h4 class="card_race">${kittenRace3}</h4>
+            <h4 class="card_race">${html}</h4>
             <p class="card_description">
             ${kittenDesc3}
             </p>
           </article>
         </li>`;
 
+/*  OPCIÓN 2
+<h4 class="card_race">${kittenRace3 === ""? `Uy que despiste, no sabemos su raza` : kittenRace3}</h4> */
+
+const btnPlus = document.querySelector('.js-btn-plus')
+btnPlus.addEventListener('click', (event) => {
+  event.preventDefault();
+  const newForm = document.querySelector('.new-form');
+
+      newForm.classList.toggle('collapsed');
+/*    if ( newForm.classList.contains('collapsed')) {
+      newForm.classList.remove('collapsed'); 
+    }*/
+});
+
+  const btnAdd = document.querySelector(".js-btn-add");
+
+  btnAdd.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+
+    const inputDesc = document.querySelector('.js-input-desc');
+    const inputPhoto = document.querySelector('.js-input-photo');
+    const inputName = document.querySelector('.js-input-name');
+    const labelMessageError = document.querySelector('.js-label-error');
+
+    const valueDesc = inputDesc.value;
+    const valuePhoto = inputPhoto.value;
+    const valueName = inputName.value;
+  
+
+
+    if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+      labelMessageError.innerHTML = "¡Uy! parece que has olvidado algo";
+      labelMessageError.classList.add('red');
+      console.log(labelMessageError);
+    } else {
+    }
+  });
+
 
 if( kittenDesc1.includes(descrSearchText) ) {
   jsList.innerHTML+= kittenOne;
   }
   
+  console.log(kittenDesc2)
   if( kittenDesc2.includes(descrSearchText) ) {
-jsList.innerHtml+=kittenTwo;
+  jsList.innerHTML+=kittenTwo;
   }
   
   if( kittenDesc3.includes(descrSearchText) ) {
     jsList.innerHTML+=kittenThree;
   }
 
-  if (kittenRace1 === "" || kittenRace2 === "" || kittenRace3 === "" ) {
-    html = `Uy que despiste, no sabemos su raza`;
-    jsList.value=html;
-  } else {
-    html = raza;
-  }; 
 
-  console.log(html)
+
+/*   || kittenRace2 === "" || kittenRace3 === ""  */
