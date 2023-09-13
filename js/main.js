@@ -97,21 +97,36 @@ const kittenThree = `<li class="card">
 
 /*  OPCIÓN 2
 <h4 class="card_race">${kittenRace3 === ""? `Uy que despiste, no sabemos su raza` : kittenRace3}</h4> */
+const newForm=document.querySelector('.new-form');
+const btnPlus = document.querySelector('.js-btn-plus');
+btnPlus.addEventListener('click', handleClickNewCatForm); 
+    
+function showNewCatForm() {
+  newForm.classList.remove('collapsed');
+}
+function hideNewCatForm() {
+  newForm.classList.add('collapsed');
+}
 
-const btnPlus = document.querySelector('.js-btn-plus')
-btnPlus.addEventListener('click', (event) => {
+
+function handleClickNewCatForm(event){
   event.preventDefault();
-  const newForm = document.querySelector('.new-form');
+     if ( newForm.classList.contains('collapsed')){
+    showNewCatForm()
+    
+   }
+   else { hideNewCatForm()
+     
 
-      newForm.classList.toggle('collapsed');
-/*    if ( newForm.classList.contains('collapsed')) {
-      newForm.classList.remove('collapsed'); 
-    }*/
-});
+   }
+  }
+
 
   const btnAdd = document.querySelector(".js-btn-add");
 
-  btnAdd.addEventListener('click', (event) => {
+  btnAdd.addEventListener('click', addNewKitten );
+
+  function addNewKitten(event) {
     event.preventDefault();
     
 
@@ -123,23 +138,24 @@ btnPlus.addEventListener('click', (event) => {
     const valueDesc = inputDesc.value;
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
+    
   
 
 
     if (valueDesc === '' || valuePhoto === '' || valueName === '') {
       labelMessageError.innerHTML = "¡Uy! parece que has olvidado algo";
       labelMessageError.classList.add('red');
-      console.log(labelMessageError);
+      
     } else {
     }
-  });
+  };
 
 
 if( kittenDesc1.includes(descrSearchText) ) {
   jsList.innerHTML+= kittenOne;
   }
   
-  console.log(kittenDesc2)
+ 
   if( kittenDesc2.includes(descrSearchText) ) {
   jsList.innerHTML+=kittenTwo;
   }
@@ -151,3 +167,6 @@ if( kittenDesc1.includes(descrSearchText) ) {
 
 
 /*   || kittenRace2 === "" || kittenRace3 === ""  */
+
+//add menukitten remove menukitten
+
