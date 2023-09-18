@@ -25,8 +25,6 @@ const kittenData_1 = {
   race: 'siamés',
 };
 
-
-
 /* tarjeta 2 */
 const kittenData_2 = {
   image: 'https://dev.adalab.es/sphynx-gato.webp',
@@ -34,8 +32,6 @@ const kittenData_2 = {
   desc: 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
   race: 'sphynx',
 };
-
-
 
 /* tarjeta 3 */
 
@@ -45,10 +41,22 @@ const kittenData_3 = {
   desc: 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
   race: 'maine coon',
 };
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3]; // array con los objetos
 
+/* listElement.innerHTML+= renderKitten(kittenDataList[0]);
+listElement.innerHTML+= renderKitten(kittenDataList[1]);
+listElement.innerHTML+= renderKitten(kittenDataList[2]); */
 
-function renderKitten(kittenData) {
+function renderKittenList(kittenDataList) {
+  for (let i = 0; i < kittenDataList.length ; i++) {
+
+  listElement.innerHTML+= renderKitten(kittenDataList[i]);
+  }
+}
+
+renderKittenList(kittenDataList);
+
+function renderKitten(kittenData) { // <- el objeto 
   const kitten = `<li class="card">
           <article>
              <img
@@ -63,14 +71,8 @@ function renderKitten(kittenData) {
              </p>
              </article>
            </li>`;
-  return kitten;}
-listElement.innerHTML+= renderKitten(kittenDataList[0]);
-listElement.innerHTML+= renderKitten(kittenDataList[1]);
-listElement.innerHTML+= renderKitten(kittenDataList[2]);
-
-
-  /*  OPCIÓN 2
-
+  return kitten;
+}
 
   /* Funciones */
 
@@ -82,8 +84,20 @@ listElement.innerHTML+= renderKitten(kittenDataList[2]);
 
     listElement.innerHTML = ''; /* resetea lo anterior */
 
-    if (descrSearchText !== '') {
-      // falta si no hay descripción ""
+    for (const kittenItem of kittenDataList) {
+      
+      if (descrSearchText !== '' && raceSearchText !== '' ) {
+        if (kittenItem.desc.includes(descrSearchText) || kittenItem.race.includes(raceSearchText)) {
+          listElement.innerHTML += renderKitten(kittenItem);
+        }
+
+      } else {
+        listElement.innerHTML = `Uy que despiste, no sabemos su raza`; 
+      }
+      
+    }
+
+/*     if (descrSearchText !== '') {
       if (kittenData_1.desc.includes(descrSearchText)) {
         listElement.innerHTML += renderKitten(kittenData_1);
       } else if (kittenData_2.desc.includes(descrSearchText)) {
@@ -91,25 +105,8 @@ listElement.innerHTML+= renderKitten(kittenDataList[2]);
       } else if (kittenData_3.desc.includes(descrSearchText)) {
         listElement.innerHTML += renderKitten(kittenData_3);
       }
-    } /* else {
-    listElement.innerHTML = `Uy que despiste, no sabemos su descripción`;
-  } */
+    }  */
 
-    renderRace(raceSearchText);
-  };
-
-  const renderRace = (raceSearchText) => {
-    if (raceSearchText !== '') {
-      if (kittenData_1.race.includes(raceSearchText.toLowerCase())) {
-        listElement.innerHTML += kittenOne;
-      } else if (kittenData_2.race.includes(raceSearchText.toLowerCase())) {
-        listElement.innerHTML += kittenTwo;
-      } else if (kittenData_3.race.includes(raceSearchText.toLowerCase())) {
-        listElement.innerHTML += kittenThree;
-      }
-    } else {
-    listElement.innerHTML = `Uy que despiste, no sabemos su raza`;
-  }  
   };
 
   function showNewCatForm() {
